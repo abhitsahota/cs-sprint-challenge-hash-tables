@@ -11,4 +11,17 @@ def reconstruct_trip(tickets, length):
     """
     # Your code here
 
+    plans = {}
+
+    route = [None] * length
+
+    for tick in tickets:
+        plans[tick.source] = tick.destination
+
+    starting_flight = plans['NONE']
+
+    for flight in range(length):
+        route[flight] = starting_flight
+        starting_flight = plans[starting_flight]
+
     return route
